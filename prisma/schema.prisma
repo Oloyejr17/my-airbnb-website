@@ -1,0 +1,38 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  password      String
+  bio           String?
+  phone         String?
+  location      String?
+  social        String?
+  occupation    String?
+  maritalStatus String?
+  image         String?
+  createdAt     DateTime  @default(now())
+  bookings      Booking[]
+}
+
+model Booking {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  itemType   String   // "listing", "experience", or "service"
+  itemId     String   // ✅ String so it matches other cuid-based IDs
+  checkIn    DateTime?
+  checkOut   DateTime?
+  guests     Int?
+  totalPrice Float
+  createdAt  DateTime @default(now())
+  status     String   @default("upcoming") // "upcoming", "completed", "canceled"
+}

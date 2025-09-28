@@ -1,0 +1,8 @@
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN "bio" TEXT;
+ALTER TABLE "User" ADD COLUMN "image" TEXT;
+ALTER TABLE "User" ADD COLUMN "location" TEXT;
+ALTER TABLE "User" ADD COLUMN "maritalStatus" TEXT;
+ALTER TABLE "User" ADD COLUMN "occupation" TEXT;
+ALTER TABLE "User" ADD COLUMN "phone" TEXT;
+ALTER TABLE "User" ADD COLUMN "social" TEXT;
