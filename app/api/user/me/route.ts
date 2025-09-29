@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { getCurrentUser } from "@/lib/auth"; // your Next-Auth helper
+import { getCurrentUser } from "@/lib/auth"; 
 
 // Convert any BigInt fields to string
 function safeUser(user: any) {
@@ -17,6 +17,10 @@ export async function GET(req: NextRequest) {
   try {
     // Get logged-in user from session
     const currentUser = await getCurrentUser();
+
+    // 🟢 Debugging log 1: What NextAuth session returns
+    console.log("Current User from session:", currentUser);
+
     if (!currentUser?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -25,6 +29,9 @@ export async function GET(req: NextRequest) {
     const user = await prisma.user.findUnique({
       where: { email: currentUser.email },
     });
+
+    // 🟢 Debugging log 2: What Prisma returns
+    console.log("User found in DB:", user);
 
     if (!user) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });

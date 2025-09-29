@@ -2,7 +2,7 @@
 
 interface BookingCardProps {
   booking: {
-    id: string; // ✅ now string
+    id: string; 
     itemType: string;
     itemId: string;
     checkIn: string | null;
@@ -12,7 +12,7 @@ interface BookingCardProps {
     status: string;
     createdAt: string;
   };
-  onBookingDeleted?: (id: string) => void; // ✅ string instead of number
+  onBookingDeleted?: (id: string) => void; 
 }
 
 export default function BookingCard({ booking, onBookingDeleted }: BookingCardProps) {

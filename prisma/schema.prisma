@@ -11,7 +11,7 @@ model User {
   id            String    @id @default(cuid())
   name          String
   email         String    @unique
-  password      String
+  password      String?   // ✅ optional now
   bio           String?
   phone         String?
   location      String?
@@ -28,7 +28,7 @@ model Booking {
   userId     String
   user       User     @relation(fields: [userId], references: [id])
   itemType   String   // "listing", "experience", or "service"
-  itemId     String   // ✅ String so it matches other cuid-based IDs
+  itemId     String   // cuid-based IDs
   checkIn    DateTime?
   checkOut   DateTime?
   guests     Int?

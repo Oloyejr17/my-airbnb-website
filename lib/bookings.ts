@@ -1,4 +1,3 @@
-// lib/bookings.ts
 import { prisma } from "./prisma";
 
 export async function getUserBookings(userId: number) {

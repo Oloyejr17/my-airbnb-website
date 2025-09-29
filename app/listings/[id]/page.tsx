@@ -1,5 +1,3 @@
-// Remove "use client"
-
 import { mockListings, Listing } from "@/data/listings";
 import ListingDetails from "@/components/listings/ListingDetails";
 import BackButton from "@/components/ui/BackButton";

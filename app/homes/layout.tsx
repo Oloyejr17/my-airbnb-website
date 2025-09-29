@@ -1,4 +1,3 @@
-// app/homes/layout.tsx
 import HomesClient from "./HomesClient";
 
 export default async function HomesLayout({ children }: { children: React.ReactNode }) {

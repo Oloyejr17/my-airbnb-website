@@ -2,7 +2,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    // Example: fetch latest Unsplash photos
     const r = await fetch("https://api.unsplash.com/photos", {
       headers: {
         Authorization: `Client-ID ${process.env.UNSPLASH_SECRET_KEY}`,

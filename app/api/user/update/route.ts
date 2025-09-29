@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { getCurrentUser } from "@/lib/auth";
 
 // BigInt-safe helper
 function safeUser(user: any) {
@@ -15,15 +14,15 @@ function safeUser(user: any) {
 
 export async function PATCH(req: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user?.email) {
+    const currentUser = await getCurrentUser();
+    if (!currentUser?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const data = await req.json();
 
     const updatedUser = await prisma.user.update({
-      where: { email: session.user.email },
+      where: { email: currentUser.email },
       data: {
         name: data.name,
         bio: data.bio,
